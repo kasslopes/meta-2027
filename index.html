@@ -14,23 +14,22 @@
 :root{
   --bg:#0b1411; --card:#132621; --card2:#18302a; --line:#244038;
   --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8;
-  --accent:#ffd166; --radius:16px;
+  --accent:#ffd166; --blue:#4aa3e0; --purple:#b78df0; --radius:16px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 14px 90px;max-width:620px;margin:0 auto}
-h1{font-size:19px;margin:18px 2px 4px}
-.sub{color:var(--mut);font-size:13px;margin:0 2px 14px}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 14px 90px;max-width:640px;margin:0 auto}
+h1{font-size:19px;margin:0}
+.sub{color:var(--mut);font-size:13px;margin:2px 0 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
 label{font-size:12px;color:var(--mut);display:block;margin-bottom:5px}
-input,button{font-family:inherit}
+input,button,select{font-family:inherit}
 input[type=number],input[type=text]{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:12px;font-size:16px}
 .btn{background:var(--green);color:#05211a;border:none;border-radius:10px;padding:12px 14px;font-size:15px;font-weight:700;cursor:pointer;width:100%}
 .btn:active{transform:scale(.98)}
 .btn.sec{background:transparent;border:1px solid var(--line);color:var(--txt);font-weight:600}
 .row{display:flex;gap:10px}
 .row>*{flex:1}
-/* dashboard */
 .panel{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
 .stat .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
@@ -38,9 +37,9 @@ input[type=number],input[type=text]{width:100%;background:var(--card2);border:1p
 .stat.wide{grid-column:1/3}
 .bar{height:12px;background:var(--card2);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px}
 .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--green-d),var(--green));width:0}
+.bar.sm{height:8px;margin-top:6px}
 .pct{font-size:13px;color:var(--mut);margin-top:6px}
-/* grid */
-.gridwrap{max-height:52vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+.gridwrap{max-height:46vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:7px}
 .dep{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;position:relative;transition:.12s}
 .dep .n{font-size:10px;color:var(--mut)}
@@ -49,32 +48,40 @@ input[type=number],input[type=text]{width:100%;background:var(--card2);border:1p
 .dep.done .n,.dep.done .val{color:#eafff6}
 .dep.done::after{content:"✓";position:absolute;top:3px;right:5px;font-size:11px;color:var(--accent)}
 .dep.center{outline:1px dashed var(--mut);outline-offset:-3px}
-/* comprovantes */
+/* baldes arca */
+.bucket{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.bucket .bhead{display:flex;justify-content:space-between;align-items:baseline}
+.bucket .bname{font-weight:700;font-size:14px}
+.bucket .bpct{font-size:11px;color:var(--mut)}
+.bucket .bval{font-size:12px;color:var(--mut);margin-top:6px}
 .rec{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px}
 .rec img{width:46px;height:46px;object-fit:cover;border-radius:8px;background:#000;flex:none}
-.rec .info{flex:1;min-width:0}
-.rec .info b{font-size:14px}
+.rec .info{flex:1;min-width:0}.rec .info b{font-size:14px}
 .rec .info small{color:var(--mut);display:block;font-size:11px}
 .rec .del{background:none;border:none;color:#e06a6a;font-size:18px;cursor:pointer;flex:none;padding:4px}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#05211a;border:1px solid var(--green);color:var(--txt);padding:12px 16px;border-radius:12px;font-size:14px;max-width:90%;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:50;opacity:0;transition:.25s;pointer-events:none}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#05211a;border:1px solid var(--green);color:var(--txt);padding:12px 16px;border-radius:12px;font-size:14px;max-width:90%;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:80;opacity:0;transition:.25s;pointer-events:none}
 .toast.show{opacity:1}
 .hint{font-size:12px;color:var(--mut);line-height:1.5;margin:8px 2px 0}
-.seg{display:flex;background:var(--card2);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:4px}
-.seg button{flex:1;background:none;border:none;color:var(--mut);padding:9px;font-size:13px;cursor:pointer}
-.seg button.on{background:var(--green-d);color:#fff;font-weight:700}
-.muted-note{font-size:11px;color:var(--mut);margin-top:10px}
+.muted-note{font-size:11px;color:var(--mut);margin-top:10px;line-height:1.5}
 a{color:var(--green)}
-.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.topbar h1{margin-top:18px}
-.gear{background:var(--card);border:1px solid var(--line);color:var(--txt);width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer;flex:none;margin-top:18px;display:flex;align-items:center;justify-content:center}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 2px 4px}
+.gear{background:var(--card);border:1px solid var(--line);color:var(--txt);width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
 .gear:active{transform:scale(.96)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:60}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--green-d);color:#eafff6;margin-top:8px}
+/* overlay / modais */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:70}
 .overlay.show{display:flex}
-.sheet{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:620px;animation:up .22s ease}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:640px;max-height:90vh;overflow:auto;animation:up .22s ease}
 @keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.sheet-head b{font-size:16px}
-.sheet .gear{width:36px;height:36px;font-size:15px;margin-top:0}
+.sheet-head b{font-size:16px}.sheet .gear{width:36px;height:36px;font-size:15px}
+/* seletor de método */
+.mopt{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;cursor:pointer;transition:.12s}
+.mopt:active{transform:scale(.99)}
+.mopt.on{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
+.mopt h3{margin:0 0 4px;font-size:15px}
+.mopt p{margin:0;font-size:12px;color:var(--mut);line-height:1.5}
+.disc{font-size:11px;color:var(--mut);line-height:1.5;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:4px}
 </style>
 </head>
 <body>
@@ -82,48 +89,28 @@ a{color:var(--green)}
 <div class="topbar">
   <div>
     <h1>💰 Desafio Meta 2027</h1>
-    <p class="sub">200 depósitos crescentes · abatimento a partir do centro</p>
+    <p class="sub" id="subTitle">Escolha um método para começar</p>
   </div>
-  <button class="gear" id="openCfg" title="Configurações" aria-label="Configurações">⚙️</button>
+  <button class="gear" id="openCfg" title="Configurações">⚙️</button>
 </div>
 
-<!-- PAINEL -->
-<div class="card">
-  <div class="panel">
-    <div class="stat wide">
-      <div class="k">Progresso</div>
-      <div class="v" id="pTotal">R$ 0,00</div>
-      <div class="bar"><i id="pBar"></i></div>
-      <div class="pct" id="pPct">0% da meta</div>
-    </div>
-    <div class="stat"><div class="k">Depósitos feitos</div><div class="v" id="pFeitos">0 / 200</div></div>
-    <div class="stat"><div class="k">Falta</div><div class="v" id="pFalta">R$ 0,00</div></div>
-    <div class="stat"><div class="k">Meta</div><div class="v" id="pMeta">R$ 0,00</div></div>
-    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v" id="pCaixa">R$ 0,00</div></div>
-  </div>
-</div>
+<div id="app"></div>
 
-<!-- COMPROVANTE -->
-<div class="card">
-  <label>Registrar depósito com comprovante</label>
+<!-- COMPROVANTE (comum aos modos) -->
+<div class="card" id="recCard" style="display:none">
+  <label id="recLabel">Registrar depósito com comprovante</label>
   <div class="row">
     <input type="number" id="recVal" inputmode="decimal" step="0.01" placeholder="Valor depositado (R$)">
     <button class="btn sec" id="pickFile" style="flex:.7">📎 Foto</button>
   </div>
   <input type="file" id="recFile" accept="image/*" style="display:none">
   <div id="fileName" class="muted-note"></div>
-  <button class="btn" id="addRec" style="margin-top:10px">Registrar e abater depósitos</button>
-  <div class="hint">O valor abate os depósitos começando pelos do <b>centro</b> da grade e indo pra fora. O que sobrar fica no <b>Caixa</b> e entra no próximo registro.</div>
-</div>
-
-<!-- GRID -->
-<div class="card">
-  <label>Grade dos 200 depósitos (toque para marcar/desmarcar)</label>
-  <div class="gridwrap"><div class="grid" id="grid"></div></div>
+  <button class="btn" id="addRec" style="margin-top:10px">Registrar depósito</button>
+  <div class="hint" id="recHint"></div>
 </div>
 
 <!-- HISTÓRICO -->
-<div class="card">
+<div class="card" id="histCard" style="display:none">
   <label>Comprovantes registrados</label>
   <div id="recs"></div>
   <div id="noRecs" class="muted-note">Nenhum comprovante ainda.</div>
@@ -131,177 +118,305 @@ a{color:var(--green)}
 
 <div class="toast" id="toast"></div>
 
-<!-- MODAL DE CONFIGURAÇÕES -->
+<!-- SELETOR DE MÉTODO -->
+<div class="overlay" id="picker">
+  <div class="sheet">
+    <div class="sheet-head"><b>Escolha seu método</b><button class="gear" id="closePicker" style="display:none">✕</button></div>
+    <div class="mopt" data-m="tabela"><h3>📊 Tabela — 200 depósitos</h3><p>200 depósitos crescentes que somam sua meta. Você marca quais já fez; o comprovante abate a partir do centro da grade.</p></div>
+    <div class="mopt" data-m="arca"><h3>🧩 Primo Rico — método ARCA</h3><p>Diversifica a meta em 4 caixinhas: Ações, Fundos imobiliários, Caixa/renda fixa e Ativos internacionais (~25% cada). Cada depósito é distribuído entre elas.</p></div>
+    <div class="mopt" data-m="sardinha"><h3>🐟 Sardinha — aporte constante</h3><p>Filosofia de longo prazo e disciplina: você aporta o mesmo valor todo mês até a meta. Defina o nº de meses e siga o ritmo.</p></div>
+    <div class="disc">Adaptações de poupança inspiradas na filosofia pública de cada autor. Não é recomendação de investimento nem produto oficial deles.</div>
+  </div>
+</div>
+
+<!-- CONFIGURAÇÕES -->
 <div class="overlay" id="cfg">
   <div class="sheet">
-    <div class="sheet-head">
-      <b>Configurações</b>
-      <button class="gear" id="closeCfg" aria-label="Fechar">✕</button>
-    </div>
+    <div class="sheet-head"><b>Configurações</b><button class="gear" id="closeCfg">✕</button></div>
+
     <label>Sua meta (R$)</label>
     <div class="row">
       <input type="number" id="meta" inputmode="decimal" step="0.01" placeholder="Ex: 35587.89">
       <button class="btn" id="setMeta" style="flex:.6">Aplicar</button>
     </div>
-    <div class="muted-note">Alterar a meta recalcula os 200 valores. Os depósitos já marcados continuam marcados (pela posição).</div>
+
+    <div style="margin-top:14px">
+      <label>Método atual</label>
+      <button class="btn sec" id="changeMethod">Trocar método</button>
+    </div>
+
+    <!-- config ARCA -->
+    <div id="cfgArca" style="display:none;margin-top:16px">
+      <label>Distribuição ARCA (% — soma 100, cada uma de 10% a 40%)</label>
+      <div class="row"><input type="number" id="pA" inputmode="numeric"><input type="number" id="pR" inputmode="numeric"><input type="number" id="pC" inputmode="numeric"><input type="number" id="pA2" inputmode="numeric"></div>
+      <div class="muted-note">Ordem: Ações · Fundos imob. · Caixa · Internacional</div>
+      <button class="btn sec" id="setArca" style="margin-top:8px">Salvar distribuição</button>
+    </div>
+
+    <!-- config Sardinha -->
+    <div id="cfgSard" style="display:none;margin-top:16px">
+      <label>Nº de meses do aporte</label>
+      <div class="row"><input type="number" id="sMonths" inputmode="numeric" placeholder="Ex: 12"><button class="btn sec" id="setSard" style="flex:.6">Salvar</button></div>
+      <div class="muted-note" id="sardCalc"></div>
+    </div>
+
+    <div style="margin-top:16px">
+      <label>Regra dos 300 (calcular meta por renda passiva)</label>
+      <div class="row"><input type="number" id="gasto" inputmode="decimal" placeholder="Gasto mensal (R$)"><button class="btn sec" id="calc300" style="flex:.6">× 300</button></div>
+      <div class="muted-note">Thiago Nigro: gasto mensal × 300 ≈ patrimônio p/ viver de renda. (Vira sua meta.)</div>
+    </div>
+
     <div class="row" style="margin-top:16px">
       <button class="btn sec" id="exportBtn">Exportar backup</button>
       <button class="btn sec" id="resetBtn" style="color:#e06a6a">Zerar tudo</button>
     </div>
-    <div class="muted-note">Tudo fica salvo só no seu celular. Exporte um backup de vez em quando.</div>
+    <div class="muted-note">Tudo fica salvo só no seu celular.</div>
   </div>
 </div>
 
 <script>
-const N=200, SUM_IDX=N*(N+1)/2; // 20100
+const N=200, SUM_IDX=N*(N+1)/2;
 const money=v=>"R$ "+(v||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
 const $=id=>document.getElementById(id);
+const round=v=>Math.round(v*100)/100;
 
-// ---------- estado (localStorage) ----------
-const LS="meta2027_state_v1";
+const LS="meta2027_state_v2";
 let state=load();
 function load(){
-  try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.done)return s;}catch(e){}
-  return {meta:0, done:new Array(N).fill(false), caixa:0};
+  try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.tabela)return s;}catch(e){}
+  return {mode:null, meta:0, caixa:0,
+    tabela:{done:new Array(N).fill(false)},
+    arca:{pcts:[25,25,25,25], saved:[0,0,0,0]},
+    sardinha:{months:12, done:[]}};
 }
 function save(){localStorage.setItem(LS,JSON.stringify(state));}
 
-// valores dos depósitos: proporcional à posição, arredondado, último ajusta a soma
-function values(){
-  const raw=[],meta=state.meta||0;
-  let acc=0;
-  for(let i=1;i<=N;i++){const v=Math.round(meta*i/SUM_IDX*100)/100;raw.push(v);acc+=v;}
-  raw[N-1]=Math.round((raw[N-1]+(meta-acc))*100)/100; // fecha a soma exata
-  return raw;
+// ---------- IndexedDB (imagens dos comprovantes) ----------
+let db;
+function idb(){return new Promise(res=>{const r=indexedDB.open("meta2027",1);
+  r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("recs"))d.createObjectStore("recs",{keyPath:"id"});};
+  r.onsuccess=e=>{db=e.target.result;res();};r.onerror=()=>res();});}
+function putRec(x){return new Promise(r=>{if(!db)return r();const t=db.transaction("recs","readwrite");t.objectStore("recs").put(x);t.oncomplete=r;t.onerror=r;});}
+function delRecDb(id){return new Promise(r=>{if(!db)return r();const t=db.transaction("recs","readwrite");t.objectStore("recs").delete(id);t.oncomplete=r;t.onerror=r;});}
+function allRecs(){return new Promise(r=>{if(!db)return r([]);const t=db.transaction("recs","readonly");const q=t.objectStore("recs").getAll();q.onsuccess=()=>r(q.result||[]);q.onerror=()=>r([]);});}
+
+// ---------- TABELA ----------
+function tabelaValues(){const raw=[],meta=state.meta||0;let acc=0;
+  for(let i=1;i<=N;i++){const v=round(meta*i/SUM_IDX);raw.push(v);acc+=v;}
+  raw[N-1]=round(raw[N-1]+(meta-acc));return raw;}
+function tabelaAllocate(value){
+  const vals=tabelaValues();let caixa=state.caixa+value;const center=(N-1)/2;
+  const avail=[];for(let i=0;i<N;i++)if(!state.tabela.done[i])avail.push({i,v:vals[i]});
+  avail.sort((a,b)=>Math.abs(a.i-center)-Math.abs(b.i-center)||a.i-b.i);
+  const consumed=[];
+  for(const d of avail)if(d.v<=caixa+1e-9){caixa=round(caixa-d.v);consumed.push(d.i);}
+  state.caixa=round(caixa);state.tabela.done.forEach;consumed.forEach(i=>state.tabela.done[i]=true);
+  return {count:consumed.length,desc:consumed.length?`abateu ${consumed.length} depósito(s)`:"foi pro caixa"};
 }
 
-// ---------- IndexedDB p/ imagens ----------
-let db;
-function idb(){return new Promise(res=>{
-  const r=indexedDB.open("meta2027",1);
-  r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("recs"))d.createObjectStore("recs",{keyPath:"id"});};
-  r.onsuccess=e=>{db=e.target.result;res();};
-  r.onerror=()=>res();
-});}
-function putRec(rec){return new Promise(res=>{if(!db)return res();const t=db.transaction("recs","readwrite");t.objectStore("recs").put(rec);t.oncomplete=res;t.onerror=res;});}
-function delRec(id){return new Promise(res=>{if(!db)return res();const t=db.transaction("recs","readwrite");t.objectStore("recs").delete(id);t.oncomplete=res;t.onerror=res;});}
-function allRecs(){return new Promise(res=>{if(!db)return res([]);const t=db.transaction("recs","readonly");const rq=t.objectStore("recs").getAll();rq.onsuccess=()=>res(rq.result||[]);rq.onerror=()=>res([]);});}
-
-// ---------- alocação a partir do centro ----------
-function allocate(value){
-  const vals=values();
-  let caixa=state.caixa+value;
-  const center=(N-1)/2;
-  const avail=[];
-  for(let i=0;i<N;i++) if(!state.done[i]) avail.push({i,v:vals[i]});
-  avail.sort((a,b)=>Math.abs(a.i-center)-Math.abs(b.i-center) || a.i-b.i);
-  const consumed=[];
-  for(const d of avail){
-    if(d.v<=caixa+1e-9){caixa=Math.round((caixa-d.v)*100)/100;consumed.push(d.i);}
+// ---------- ARCA ----------
+const ARCA_NAMES=["Ações","Fundos imob.","Caixa","Internacional"];
+function arcaTargets(){return state.arca.pcts.map(p=>round((state.meta||0)*p/100));}
+function arcaAllocate(value){
+  const tg=arcaTargets();let caixa=state.caixa+value;let distributed=0;
+  // distribui proporcional ao % entre as caixinhas que ainda não encheram
+  for(let pass=0;pass<4 && caixa>0.009;pass++){
+    const open=[0,1,2,3].filter(i=>state.arca.saved[i]<tg[i]-0.009);
+    if(!open.length)break;
+    const wsum=open.reduce((s,i)=>s+state.arca.pcts[i],0);
+    let moved=0;
+    for(const i of open){
+      const share=round(caixa*state.arca.pcts[i]/wsum);
+      const room=round(tg[i]-state.arca.saved[i]);
+      const add=Math.min(share,room);
+      if(add>0){state.arca.saved[i]=round(state.arca.saved[i]+add);moved=round(moved+add);}
+    }
+    if(moved<=0)break;caixa=round(caixa-moved);distributed=round(distributed+moved);
   }
-  state.caixa=Math.round(caixa*100)/100;
-  consumed.forEach(i=>state.done[i]=true);
-  return consumed;
+  state.caixa=round(caixa);
+  return {count:0,desc:`distribuiu ${money(distributed)} nas caixinhas`};
+}
+
+// ---------- SARDINHA ----------
+function sardMonthly(){const m=state.sardinha.months||1;return round((state.meta||0)/m);}
+function sardAllocate(value){
+  const mv=sardMonthly();let caixa=state.caixa+value;const n=state.sardinha.months;
+  if(state.sardinha.done.length!==n)state.sardinha.done=new Array(n).fill(false);
+  let c=0;
+  for(let i=0;i<n;i++)if(!state.sardinha.done[i] && mv<=caixa+1e-9){state.sardinha.done[i]=true;caixa=round(caixa-mv);c++;}
+  state.caixa=round(caixa);
+  return {count:c,desc:c?`cobriu ${c} mês(es) de aporte`:"foi pro caixa"};
+}
+
+function allocate(v){
+  if(state.mode==="tabela")return tabelaAllocate(v);
+  if(state.mode==="arca")return arcaAllocate(v);
+  if(state.mode==="sardinha")return sardAllocate(v);
+  return {count:0,desc:""};
+}
+
+// ---------- totais ----------
+function totals(){
+  let total=0;
+  if(state.mode==="tabela"){const v=tabelaValues();state.tabela.done.forEach((d,i)=>{if(d)total+=v[i];});}
+  else if(state.mode==="arca"){total=state.arca.saved.reduce((s,x)=>s+x,0);}
+  else if(state.mode==="sardinha"){const mv=sardMonthly();total=state.sardinha.done.filter(Boolean).length*mv;}
+  total=round(total);const meta=state.meta||0;
+  return {total,meta,falta:Math.max(0,round(meta-total)),pct:meta?Math.min(100,total/meta*100):0};
 }
 
 // ---------- render ----------
 function render(){
-  const vals=values();
-  let feitos=0,total=0;
-  const center=Math.round((N-1)/2);
-  const g=$("grid");g.innerHTML="";
-  for(let i=0;i<N;i++){
-    if(state.done[i]){feitos++;total+=vals[i];}
-    const el=document.createElement("div");
-    el.className="dep"+(state.done[i]?" done":"")+(i===center||i===center-1?" center":"");
-    el.innerHTML=`<div class="n">#${i+1}</div><div class="val">${vals[i].toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
-    el.onclick=()=>{state.done[i]=!state.done[i];save();render();};
-    g.appendChild(el);
+  const has=!!state.mode;
+  $("recCard").style.display=has?"block":"none";
+  $("histCard").style.display=has?"block":"none";
+  const names={tabela:"Tabela — 200 depósitos",arca:"Primo Rico — ARCA",sardinha:"Sardinha — aporte constante"};
+  $("subTitle").textContent=has?names[state.mode]:"Escolha um método para começar";
+  const app=$("app");app.innerHTML="";
+  if(!has)return;
+  const t=totals();
+
+  // painel KPI comum
+  const panel=document.createElement("div");panel.className="card";
+  let extra="";
+  if(state.mode==="sardinha")extra=`<div class="stat"><div class="k">Aporte / mês</div><div class="v">${money(sardMonthly())}</div></div>
+    <div class="stat"><div class="k">Meses feitos</div><div class="v">${state.sardinha.done.filter(Boolean).length} / ${state.sardinha.months}</div></div>`;
+  else if(state.mode==="tabela")extra=`<div class="stat"><div class="k">Depósitos feitos</div><div class="v">${state.tabela.done.filter(Boolean).length} / ${N}</div></div>
+    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(state.caixa)}</div></div>`;
+  else extra=`<div class="stat"><div class="k">Caixinhas</div><div class="v">4 (ARCA)</div></div>
+    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(state.caixa)}</div></div>`;
+  panel.innerHTML=`<div class="panel">
+    <div class="stat wide"><div class="k">Progresso</div><div class="v">${money(t.total)}</div>
+      <div class="bar"><i style="width:${t.pct}%"></i></div>
+      <div class="pct">${t.pct.toFixed(1).replace(".",",")}% da meta · falta ${money(t.falta)}</div></div>
+    <div class="stat"><div class="k">Meta</div><div class="v">${money(t.meta)}</div></div>
+    <div class="stat"><div class="k">Modo</div><div class="v" style="font-size:14px">${names[state.mode]}</div></div>
+    ${extra}</div>`;
+  app.appendChild(panel);
+
+  // corpo por modo
+  const body=document.createElement("div");body.className="card";
+  if(state.mode==="tabela"){
+    const v=tabelaValues();const center=Math.round((N-1)/2);
+    body.innerHTML=`<label>Grade dos 200 depósitos (toque para marcar/desmarcar)</label><div class="gridwrap"><div class="grid" id="grid"></div></div>`;
+    app.appendChild(body);
+    const g=$("grid");
+    for(let i=0;i<N;i++){const el=document.createElement("div");
+      el.className="dep"+(state.tabela.done[i]?" done":"")+(i===center||i===center-1?" center":"");
+      el.innerHTML=`<div class="n">#${i+1}</div><div class="val">${v[i].toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
+      el.onclick=()=>{state.tabela.done[i]=!state.tabela.done[i];save();render();};g.appendChild(el);}
+  } else if(state.mode==="arca"){
+    const tg=arcaTargets();
+    body.innerHTML=`<label>Caixinhas do método ARCA</label><div id="buckets"></div>`;
+    app.appendChild(body);
+    const bx=$("buckets");
+    for(let i=0;i<4;i++){const saved=state.arca.saved[i],target=tg[i],pct=target?Math.min(100,saved/target*100):0;
+      const d=document.createElement("div");d.className="bucket";
+      d.innerHTML=`<div class="bhead"><span class="bname">${ARCA_NAMES[i]}</span><span class="bpct">${state.arca.pcts[i]}% · alvo ${money(target)}</span></div>
+        <div class="bar sm"><i style="width:${pct}%"></i></div>
+        <div class="bval">${money(saved)} (${pct.toFixed(0)}%)</div>`;
+      bx.appendChild(d);}
+  } else if(state.mode==="sardinha"){
+    const n=state.sardinha.months,mv=sardMonthly();
+    if(state.sardinha.done.length!==n)state.sardinha.done=new Array(n).fill(false);
+    body.innerHTML=`<label>Aportes mensais (toque para marcar/desmarcar)</label><div class="gridwrap"><div class="grid" id="grid"></div></div>`;
+    app.appendChild(body);
+    const g=$("grid");
+    for(let i=0;i<n;i++){const el=document.createElement("div");el.className="dep"+(state.sardinha.done[i]?" done":"");
+      el.innerHTML=`<div class="n">Mês ${i+1}</div><div class="val">${mv.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
+      el.onclick=()=>{state.sardinha.done[i]=!state.sardinha.done[i];save();render();};g.appendChild(el);}
   }
-  total=Math.round(total*100)/100;
-  const meta=state.meta||0, falta=Math.max(0,Math.round((meta-total)*100)/100);
-  const pct=meta?Math.min(100,total/meta*100):0;
-  $("pTotal").textContent=money(total);
-  $("pBar").style.width=pct+"%";
-  $("pPct").textContent=pct.toFixed(1).replace(".",",")+"% da meta";
-  $("pFeitos").textContent=feitos+" / "+N;
-  $("pFalta").textContent=money(falta);
-  $("pMeta").textContent=money(meta);
-  $("pCaixa").textContent=money(state.caixa);
-  $("meta").value=meta||"";
+
+  // textos do card de comprovante
+  const hints={tabela:"Abate os depósitos a partir do centro da grade; a sobra fica no Caixa.",
+    arca:"O valor é distribuído entre as 4 caixinhas conforme a % de cada uma.",
+    sardinha:`Cada mês custa ${money(sardMonthly())}; o valor cobre quantos meses der e a sobra fica no Caixa.`};
+  $("recHint").textContent=hints[state.mode]||"";
+  $("meta").value=state.meta||"";
 }
 
 async function renderRecs(){
-  const recs=(await allRecs()).sort((a,b)=>b.id-a.id);
-  const box=$("recs");box.innerHTML="";
+  const recs=(await allRecs()).sort((a,b)=>b.id-a.id);const box=$("recs");box.innerHTML="";
   $("noRecs").style.display=recs.length?"none":"block";
-  for(const r of recs){
-    const div=document.createElement("div");div.className="rec";
-    div.innerHTML=`<img src="${r.img||''}" alt="">
-      <div class="info"><b>${money(r.value)}</b>
-      <small>${new Date(r.id).toLocaleDateString("pt-BR")} · abateu ${r.count} depósito(s)</small></div>
-      <button class="del" title="Excluir">✕</button>`;
+  for(const r of recs){const div=document.createElement("div");div.className="rec";
+    div.innerHTML=`<img src="${r.img||''}" alt=""><div class="info"><b>${money(r.value)}</b>
+      <small>${new Date(r.id).toLocaleDateString("pt-BR")} · ${r.desc||''}</small></div><button class="del">✕</button>`;
     div.querySelector(".del").onclick=async()=>{
-      if(!confirm("Excluir este comprovante? Os depósitos que ele marcou serão desmarcados."))return;
-      (r.deposits||[]).forEach(i=>state.done[i]=false);
-      await delRec(r.id);save();render();renderRecs();toast("Comprovante excluído");
-    };
-    box.appendChild(div);
-  }
+      if(!confirm("Excluir este comprovante? (não desfaz a alocação automaticamente)"))return;
+      await delRecDb(r.id);renderRecs();toast("Comprovante excluído");};
+    box.appendChild(div);}
 }
 
-function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2600);}
-
-// comprimir imagem p/ miniatura (economiza espaço)
-function readImg(file){return new Promise(res=>{
-  if(!file)return res("");
-  const fr=new FileReader();
-  fr.onload=()=>{const im=new Image();im.onload=()=>{
-    const max=400,sc=Math.min(1,max/Math.max(im.width,im.height));
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800);}
+function readImg(file){return new Promise(res=>{if(!file)return res("");const fr=new FileReader();
+  fr.onload=()=>{const im=new Image();im.onload=()=>{const max=400,sc=Math.min(1,max/Math.max(im.width,im.height));
     const c=document.createElement("canvas");c.width=im.width*sc;c.height=im.height*sc;
-    c.getContext("2d").drawImage(im,0,0,c.width,c.height);
-    res(c.toDataURL("image/jpeg",.6));
-  };im.onerror=()=>res("");im.src=fr.result;};
-  fr.onerror=()=>res("");fr.readAsDataURL(file);
-});}
+    c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.6));};
+    im.onerror=()=>res("");im.src=fr.result;};fr.onerror=()=>res("");fr.readAsDataURL(file);});}
 
 // ---------- eventos ----------
 let pickedFile=null;
-const cfg=$("cfg");
-$("openCfg").onclick=()=>cfg.classList.add("show");
+const cfg=$("cfg"),picker=$("picker");
+$("openCfg").onclick=()=>{syncCfg();cfg.classList.add("show");};
 $("closeCfg").onclick=()=>cfg.classList.remove("show");
 cfg.onclick=e=>{if(e.target===cfg)cfg.classList.remove("show");};
-$("setMeta").onclick=()=>{
-  const m=parseFloat($("meta").value);
-  if(!m||m<=0)return toast("Digite uma meta válida");
-  state.meta=Math.round(m*100)/100;save();render();toast("Meta aplicada");
-};
+$("closePicker").onclick=()=>picker.classList.remove("show");
+picker.onclick=e=>{if(e.target===picker&&state.mode)picker.classList.remove("show");};
+$("changeMethod").onclick=()=>{cfg.classList.remove("show");openPicker();};
+
+function openPicker(){
+  document.querySelectorAll(".mopt").forEach(o=>o.classList.toggle("on",o.dataset.m===state.mode));
+  $("closePicker").style.display=state.mode?"flex":"none";
+  picker.classList.add("show");
+}
+document.querySelectorAll(".mopt").forEach(o=>o.onclick=()=>{
+  state.mode=o.dataset.m;
+  if(state.mode==="sardinha"&&state.sardinha.done.length!==state.sardinha.months)state.sardinha.done=new Array(state.sardinha.months).fill(false);
+  save();render();renderRecs();picker.classList.remove("show");
+  if(!state.meta){syncCfg();cfg.classList.add("show");toast("Agora defina sua meta");}
+});
+
+function syncCfg(){
+  $("meta").value=state.meta||"";
+  $("cfgArca").style.display=state.mode==="arca"?"block":"none";
+  $("cfgSard").style.display=state.mode==="sardinha"?"block":"none";
+  if(state.mode==="arca"){const p=state.arca.pcts;$("pA").value=p[0];$("pR").value=p[1];$("pC").value=p[2];$("pA2").value=p[3];}
+  if(state.mode==="sardinha"){$("sMonths").value=state.sardinha.months;$("sardCalc").textContent=state.meta?`Aporte mensal ≈ ${money(sardMonthly())}`:"";}
+}
+
+$("setMeta").onclick=()=>{const m=parseFloat($("meta").value);if(!m||m<=0)return toast("Digite uma meta válida");
+  state.meta=round(m);save();render();syncCfg();toast("Meta aplicada");};
+$("setArca").onclick=()=>{const p=[+$("pA").value,+$("pR").value,+$("pC").value,+$("pA2").value];
+  if(p.some(x=>isNaN(x))||Math.round(p.reduce((s,x)=>s+x,0))!==100)return toast("As 4 % precisam somar 100");
+  if(p.some(x=>x<10||x>40))return toast("Cada classe deve ficar entre 10% e 40%");
+  state.arca.pcts=p;save();render();toast("Distribuição salva");};
+$("setSard").onclick=()=>{const n=parseInt($("sMonths").value);if(!n||n<1||n>600)return toast("Nº de meses inválido");
+  state.sardinha.months=n;state.sardinha.done=new Array(n).fill(false);save();render();syncCfg();toast("Plano atualizado");};
+$("calc300").onclick=()=>{const g=parseFloat($("gasto").value);if(!g||g<=0)return toast("Digite o gasto mensal");
+  state.meta=round(g*300);save();render();syncCfg();toast("Meta definida pela Regra dos 300");};
+
 $("pickFile").onclick=()=>$("recFile").click();
 $("recFile").onchange=e=>{pickedFile=e.target.files[0]||null;$("fileName").textContent=pickedFile?("📎 "+pickedFile.name):"";};
 $("addRec").onclick=async()=>{
-  const v=parseFloat($("recVal").value);
-  if(!v||v<=0)return toast("Digite o valor depositado");
-  const consumed=allocate(v);
-  const img=await readImg(pickedFile);
-  const rec={id:Date.now(),value:Math.round(v*100)/100,count:consumed.length,deposits:consumed,img};
-  await putRec(rec);save();render();renderRecs();
+  if(!state.meta)return toast("Defina sua meta primeiro (⚙️)");
+  const v=parseFloat($("recVal").value);if(!v||v<=0)return toast("Digite o valor depositado");
+  const r=allocate(round(v));const img=await readImg(pickedFile);
+  await putRec({id:Date.now(),value:round(v),desc:r.desc,img});
+  save();render();renderRecs();
   pickedFile=null;$("recFile").value="";$("recVal").value="";$("fileName").textContent="";
-  toast(consumed.length?`Abatidos ${consumed.length} depósito(s). Caixa: ${money(state.caixa)}`:`Valor guardado no caixa: ${money(state.caixa)}`);
+  toast(`Registrado · ${r.desc} · Caixa: ${money(state.caixa)}`);
 };
-$("resetBtn").onclick=async()=>{
-  if(!confirm("Zerar meta, depósitos e comprovantes?"))return;
-  const recs=await allRecs();for(const r of recs)await delRec(r.id);
-  state={meta:state.meta,done:new Array(N).fill(false),caixa:0};save();render();renderRecs();toast("Tudo zerado");
-};
-$("exportBtn").onclick=async()=>{
-  const data={state,recs:await allRecs()};
+$("resetBtn").onclick=async()=>{if(!confirm("Zerar meta, progresso e comprovantes?"))return;
+  const recs=await allRecs();for(const r of recs)await delRecDb(r.id);
+  state={mode:null,meta:0,caixa:0,tabela:{done:new Array(N).fill(false)},arca:{pcts:[25,25,25,25],saved:[0,0,0,0]},sardinha:{months:12,done:[]}};
+  save();cfg.classList.remove("show");render();renderRecs();openPicker();toast("Tudo zerado");};
+$("exportBtn").onclick=async()=>{const data={state,recs:await allRecs()};
   const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
-  a.download="meta2027-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();
-};
+  a.download="meta2027-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();};
 
 // ---------- init ----------
-(async()=>{await idb();render();renderRecs();if(!state.meta)cfg.classList.add("show");})();
+(async()=>{await idb();render();renderRecs();if(!state.mode)openPicker();})();
 if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}
 </script>
 </body>

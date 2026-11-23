@@ -22,14 +22,19 @@ Abra o `index.html` no navegador do celular. Já funciona. Mas pra virar
 5. Abra esse link no celular → menu do navegador → **"Adicionar à tela inicial"**.
    Pronto: vira ícone, abre em tela cheia e funciona offline.
 
+## Três métodos (selecionáveis na abertura ou na engrenagem)
+- **Tabela** — 200 depósitos crescentes que somam a meta; comprovante abate a partir do centro da grade.
+- **Primo Rico (ARCA)** — meta dividida em 4 caixinhas (Ações, Fundos imobiliários, Caixa, Internacional, ~25% cada, 10–40%); cada depósito é distribuído entre elas. Inclui a Regra dos 300 (gasto mensal × 300) para calcular a meta.
+- **Sardinha** — aporte constante: define-se o nº de meses e aporta-se o mesmo valor por mês até a meta.
+
+> Adaptações de poupança inspiradas na filosofia pública de cada autor. Não é recomendação de investimento nem produto oficial deles.
+
 ## Como usar
-1. Digite a meta e toque em **Aplicar** (recalcula os 200 valores).
-2. Para registrar: digite o valor do depósito, anexe a foto do comprovante e
-   toque em **Registrar e abater depósitos**.
-3. O valor abate os depósitos **a partir do centro** da grade, indo pra fora.
-   O que sobrar fica no **Caixa** e entra no próximo registro.
-4. Dá pra marcar/desmarcar depósitos manualmente tocando na grade.
-5. **Exportar backup** salva um `.json` com tudo.
+1. Escolha o método e defina a meta (⚙️).
+2. Para registrar: digite o valor, anexe a foto do comprovante e toque em **Registrar depósito**.
+   O app aloca conforme o método; a sobra fica no **Caixa**.
+3. Dá pra marcar/desmarcar manualmente tocando na grade/meses.
+4. **Exportar backup** salva um `.json` com tudo.
 
 Dados ficam só no seu celular. Limpar os dados do navegador apaga o progresso —
 use o backup.
