@@ -1,7 +1,8 @@
-# Desafio Meta 2027 — app local (PWA)
+# Golden ostrich — app local (PWA)
 
-App de desafio de economia com 200 depósitos crescentes. Roda 100% no celular,
-sem servidor, offline e com os dados salvos no próprio aparelho — mesma técnica do openGym.
+App de desafio de economia com 3 métodos (tabela de 200 depósitos, ARCA e aporte constante).
+Roda 100% no celular, sem servidor, offline e com os dados salvos no próprio aparelho — mesma técnica do openGym.
+Tema escuro ou claro (na engrenagem).
 
 ## Arquivos
 - `index.html` — o app inteiro (interface + lógica)

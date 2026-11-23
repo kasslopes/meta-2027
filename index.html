@@ -6,14 +6,18 @@
 <meta name="theme-color" content="#0d6e4a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Meta 2027">
+<meta name="apple-mobile-web-app-title" content="Golden ostrich">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<title>Desafio Meta 2027</title>
+<title>Golden ostrich</title>
 <style>
 :root{
   --bg:#0b1411; --card:#132621; --card2:#18302a; --line:#244038;
-  --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8; --accent:#ffd166; --radius:16px;
+  --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8; --accent:#e6b746; --radius:16px;
+}
+body.light{
+  --bg:#eef3f0; --card:#ffffff; --card2:#f2f7f4; --line:#d6e2dc;
+  --green:#12a66d; --green-d:#0d6e4a; --txt:#13251f; --mut:#5c7a70; --accent:#c79320;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
@@ -82,7 +86,7 @@ a{color:var(--green)}
 <body>
 
 <div class="topbar">
-  <div><h1>💰 Desafio Meta 2027</h1><p class="sub" id="subTitle">—</p></div>
+  <div><h1>🪙 Golden ostrich</h1><p class="sub" id="subTitle">—</p></div>
   <button class="gear" id="openCfg" title="Configurações">⚙️</button>
 </div>
 
@@ -118,6 +122,12 @@ a{color:var(--green)}
 <div class="overlay" id="cfg">
   <div class="sheet">
     <div class="sheet-head"><b>Configurações</b><button class="gear" id="closeCfg">✕</button></div>
+
+    <label>Tema de cores</label>
+    <div class="row" style="margin-bottom:16px">
+      <button class="btn sec" id="themeDark">🌙 Escuro</button>
+      <button class="btn sec" id="themeLight">☀️ Claro</button>
+    </div>
 
     <label>Meta (vale para os 3 métodos)</label>
     <div class="row">
@@ -173,7 +183,7 @@ function load(){
   try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.tabela&&s.active)return s;}catch(e){}
   // migra da v2 se existir
   let old=null;try{old=JSON.parse(localStorage.getItem("meta2027_state_v2"));}catch(e){}
-  const base={meta:(old&&old.meta)||0, active:"tabela",
+  const base={meta:(old&&old.meta)||0, active:"tabela", theme:"dark",
     tabela:{done:(old&&old.tabela&&old.tabela.done)||new Array(N).fill(false), caixa:0},
     arca:{pcts:(old&&old.arca&&old.arca.pcts)||[25,25,25,25], saved:(old&&old.arca&&old.arca.saved)||[0,0,0,0], caixa:0},
     sardinha:{months:(old&&old.sardinha&&old.sardinha.months)||12, done:(old&&old.sardinha&&old.sardinha.done)||[], caixa:0}};
@@ -301,6 +311,11 @@ function readImg(file){return new Promise(res=>{if(!file)return res("");const fr
     im.onerror=()=>res("");im.src=fr.result;};fr.onerror=()=>res("");fr.readAsDataURL(file);});}
 
 let pickedFile=null;const cfg=$("cfg");
+function applyTheme(){const light=(state.theme||"dark")==="light";
+  document.body.classList.toggle("light",light);
+  const tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute("content",light?"#eef3f0":"#0d6e4a");}
+$("themeDark").onclick=()=>{state.theme="dark";save();applyTheme();};
+$("themeLight").onclick=()=>{state.theme="light";save();applyTheme();};
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{state.active=b.dataset.m;save();render();});
 $("openCfg").onclick=()=>{syncCfg();cfg.classList.add("show");};
 $("closeCfg").onclick=()=>cfg.classList.remove("show");
@@ -331,14 +346,15 @@ $("addRec").onclick=async()=>{if(!state.meta)return toast("Defina sua meta prime
   toast(`${NAMES[m]} · ${desc} · Caixa: ${money(caixaDe(m))}`);};
 $("resetBtn").onclick=async()=>{if(!confirm("Zerar a META, o progresso dos 3 métodos e todos os comprovantes?"))return;
   const recs=await allRecs();for(const r of recs)await delRecDb(r.id);
-  state={meta:0,active:"tabela",tabela:{done:new Array(N).fill(false),caixa:0},arca:{pcts:[25,25,25,25],saved:[0,0,0,0],caixa:0},sardinha:{months:12,done:[],caixa:0}};
+  const theme=state.theme||"dark";
+  state={meta:0,active:"tabela",theme,tabela:{done:new Array(N).fill(false),caixa:0},arca:{pcts:[25,25,25,25],saved:[0,0,0,0],caixa:0},sardinha:{months:12,done:[],caixa:0}};
   save();render();renderRecs();syncCfg();toast("Tudo zerado");};
 $("exportBtn").onclick=async()=>{const data={state,recs:await allRecs()};
   const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
   a.download="meta2027-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();};
 
-(async()=>{await idb();render();renderRecs();if(!state.meta){syncCfg();cfg.classList.add("show");}})();
+(async()=>{await idb();applyTheme();render();renderRecs();if(!state.meta){syncCfg();cfg.classList.add("show");}})();
 if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}
 </script>
 </body>

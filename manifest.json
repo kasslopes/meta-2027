@@ -1,7 +1,7 @@
 {
-  "name": "Desafio Meta 2027",
-  "short_name": "Meta 2027",
-  "description": "Desafio de economia com 200 depósitos crescentes",
+  "name": "Golden ostrich",
+  "short_name": "Golden ostrich",
+  "description": "Desafio de economia com 3 métodos: tabela de 200 depósitos, ARCA e aporte constante",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
