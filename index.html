@@ -81,19 +81,25 @@ a{color:var(--green)}
 .seccard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}
 .seccard h4{margin:0 0 8px;font-size:14px}
 .disc{font-size:11px;color:var(--mut);line-height:1.5;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:14px}
+.ico{width:16px;height:16px;vertical-align:-3px;margin-right:7px;flex:none}
+.btn .ico{margin-right:6px}
+.gear .ico{margin:0;width:20px;height:20px;vertical-align:middle}
+.tabs button svg{width:22px;height:22px;display:block;margin:0 auto 3px}
+.seccard h4 .ico{width:16px;height:16px;margin-right:6px}
+h1 .ico{width:20px;height:20px;vertical-align:-3px;margin-right:6px}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div><h1>🪙 Golden ostrich</h1><p class="sub" id="subTitle">—</p></div>
-  <button class="gear" id="openCfg" title="Configurações">⚙️</button>
+  <div><h1><svg class="ico" style="color:var(--accent)" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6" fill="none" stroke="var(--bg)" stroke-width="1.6"/></svg>Golden ostrich</h1><p class="sub" id="subTitle">—</p></div>
+  <button class="gear" id="openCfg" title="Configurações"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2.1-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3H9l-.4 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L4.6 11a7.8 7.8 0 0 0 0 2l-2.1 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1L9 21h6l.4-2.6a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4L19.4 13ZM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg></button>
 </div>
 
 <div class="tabs" id="tabs">
-  <button data-m="tabela"><span class="em">📊</span>Tabela</button>
-  <button data-m="arca"><span class="em">🧩</span>Primo Rico</button>
-  <button data-m="sardinha"><span class="em">🐟</span>Sardinha</button>
+  <button data-m="tabela"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.6"/></svg>Tabela</button>
+  <button data-m="arca"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M13 2.1V11h8.9A10 10 0 0 0 13 2.1Z" opacity=".5"/></svg>Primo Rico</button>
+  <button data-m="sardinha"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 12c3-5.5 10-6.5 14-4l3-2.2-1.1 4.2L20 14l-3-2.2c-4 2.5-11 1.5-14-3.8Z"/><circle cx="8.5" cy="10.5" r="1.1" fill="var(--card)"/></svg>Sardinha</button>
 </div>
 
 <div id="app"></div>
@@ -102,7 +108,7 @@ a{color:var(--green)}
   <label id="recLabel">Registrar depósito com comprovante</label>
   <div class="row">
     <input type="number" id="recVal" inputmode="decimal" step="0.01" placeholder="Valor depositado (R$)">
-    <button class="btn sec" id="pickFile" style="flex:.7">📎 Foto</button>
+    <button class="btn sec" id="pickFile" style="flex:.7"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M9 4 7.6 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.6L15 4H9Z"/><circle cx="12" cy="13" r="3.4" fill="var(--card2)"/></svg>Foto</button>
   </div>
   <input type="file" id="recFile" accept="image/*" style="display:none">
   <div id="fileName" class="muted-note"></div>
@@ -121,12 +127,12 @@ a{color:var(--green)}
 <!-- CONFIGURAÇÕES (todos os métodos juntos) -->
 <div class="overlay" id="cfg">
   <div class="sheet">
-    <div class="sheet-head"><b>Configurações</b><button class="gear" id="closeCfg">✕</button></div>
+    <div class="sheet-head"><b>Configurações</b><button class="gear" id="closeCfg"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 
     <label>Tema de cores</label>
     <div class="row" style="margin-bottom:16px">
-      <button class="btn sec" id="themeDark">🌙 Escuro</button>
-      <button class="btn sec" id="themeLight">☀️ Claro</button>
+      <button class="btn sec" id="themeDark"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>Escuro</button>
+      <button class="btn sec" id="themeLight"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4.5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"/></g></svg>Claro</button>
     </div>
 
     <label>Meta (vale para os 3 métodos)</label>
@@ -141,7 +147,7 @@ a{color:var(--green)}
     <div class="muted-note">Regra dos 300 (Primo Rico): gasto mensal × 300 ≈ patrimônio p/ viver de renda — vira sua meta.</div>
 
     <div class="seccard">
-      <h4>🧩 Primo Rico — ARCA</h4>
+      <h4><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M13 2.1V11h8.9A10 10 0 0 0 13 2.1Z" opacity=".5"/></svg>Primo Rico — ARCA</h4>
       <label>Distribuição (% — soma 100, cada uma de 10% a 40%)</label>
       <div class="row"><input type="number" id="pA" inputmode="numeric"><input type="number" id="pR" inputmode="numeric"><input type="number" id="pC" inputmode="numeric"><input type="number" id="pA2" inputmode="numeric"></div>
       <div class="muted-note">Ações · Fundos imob. · Caixa · Internacional</div>
@@ -149,14 +155,14 @@ a{color:var(--green)}
     </div>
 
     <div class="seccard">
-      <h4>🐟 Sardinha — aporte constante</h4>
+      <h4><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12c3-5.5 10-6.5 14-4l3-2.2-1.1 4.2L20 14l-3-2.2c-4 2.5-11 1.5-14-3.8Z"/><circle cx="8.5" cy="10.5" r="1.1" fill="var(--card2)"/></svg>Sardinha — aporte constante</h4>
       <label>Nº de meses do aporte</label>
       <div class="row"><input type="number" id="sMonths" inputmode="numeric" placeholder="Ex: 12"><button class="btn sec" id="setSard" style="flex:.6">Salvar</button></div>
       <div class="muted-note" id="sardCalc"></div>
     </div>
 
     <div class="seccard">
-      <h4>📊 Tabela — 200 depósitos</h4>
+      <h4><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.6"/></svg>Tabela — 200 depósitos</h4>
       <div class="muted-note">Os 200 valores são recalculados automaticamente a partir da meta.</div>
     </div>
 
