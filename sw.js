@@ -1,4 +1,4 @@
-const CACHE = "meta2027-v1";
+const CACHE = "golden-ostrich-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -16,7 +16,19 @@ self.addEventListener("activate", e => {
   );
 });
 self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(hit => hit || fetch(e.request).catch(() => caches.match("./index.html")))
-  );
+  const req = e.request;
+  const isDoc = req.mode === "navigate" || (req.destination === "" && req.url.includes("index.html"));
+  if (isDoc) {
+    // rede primeiro para a página, cai pro cache offline
+    e.respondWith(
+      fetch(req).then(r => {
+        const copy = r.clone();
+        caches.open(CACHE).then(c => c.put("./index.html", copy));
+        return r;
+      }).catch(() => caches.match("./index.html"))
+    );
+  } else {
+    // cache primeiro para ícones e demais estáticos
+    e.respondWith(caches.match(req).then(hit => hit || fetch(req)));
+  }
 });
