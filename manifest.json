@@ -1,0 +1,15 @@
+{
+  "name": "Desafio Meta 2027",
+  "short_name": "Meta 2027",
+  "description": "Desafio de economia com 200 depósitos crescentes",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1411",
+  "theme_color": "#0d6e4a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

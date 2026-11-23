@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d6e4a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Meta 2027">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>Desafio Meta 2027</title>
+<style>
+:root{
+  --bg:#0b1411; --card:#132621; --card2:#18302a; --line:#244038;
+  --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8;
+  --accent:#ffd166; --radius:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 14px 90px;max-width:620px;margin:0 auto}
+h1{font-size:19px;margin:18px 2px 4px}
+.sub{color:var(--mut);font-size:13px;margin:0 2px 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
+label{font-size:12px;color:var(--mut);display:block;margin-bottom:5px}
+input,button{font-family:inherit}
+input[type=number],input[type=text]{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:12px;font-size:16px}
+.btn{background:var(--green);color:#05211a;border:none;border-radius:10px;padding:12px 14px;font-size:15px;font-weight:700;cursor:pointer;width:100%}
+.btn:active{transform:scale(.98)}
+.btn.sec{background:transparent;border:1px solid var(--line);color:var(--txt);font-weight:600}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+/* dashboard */
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.stat .v{font-size:19px;font-weight:800;margin-top:3px}
+.stat.wide{grid-column:1/3}
+.bar{height:12px;background:var(--card2);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--green-d),var(--green));width:0}
+.pct{font-size:13px;color:var(--mut);margin-top:6px}
+/* grid */
+.gridwrap{max-height:52vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:7px}
+.dep{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;position:relative;transition:.12s}
+.dep .n{font-size:10px;color:var(--mut)}
+.dep .val{font-size:13px;font-weight:700;margin-top:2px}
+.dep.done{background:var(--green-d);border-color:var(--green)}
+.dep.done .n,.dep.done .val{color:#eafff6}
+.dep.done::after{content:"✓";position:absolute;top:3px;right:5px;font-size:11px;color:var(--accent)}
+.dep.center{outline:1px dashed var(--mut);outline-offset:-3px}
+/* comprovantes */
+.rec{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px}
+.rec img{width:46px;height:46px;object-fit:cover;border-radius:8px;background:#000;flex:none}
+.rec .info{flex:1;min-width:0}
+.rec .info b{font-size:14px}
+.rec .info small{color:var(--mut);display:block;font-size:11px}
+.rec .del{background:none;border:none;color:#e06a6a;font-size:18px;cursor:pointer;flex:none;padding:4px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#05211a;border:1px solid var(--green);color:var(--txt);padding:12px 16px;border-radius:12px;font-size:14px;max-width:90%;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:50;opacity:0;transition:.25s;pointer-events:none}
+.toast.show{opacity:1}
+.hint{font-size:12px;color:var(--mut);line-height:1.5;margin:8px 2px 0}
+.seg{display:flex;background:var(--card2);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:4px}
+.seg button{flex:1;background:none;border:none;color:var(--mut);padding:9px;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--green-d);color:#fff;font-weight:700}
+.muted-note{font-size:11px;color:var(--mut);margin-top:10px}
+a{color:var(--green)}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.topbar h1{margin-top:18px}
+.gear{background:var(--card);border:1px solid var(--line);color:var(--txt);width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer;flex:none;margin-top:18px;display:flex;align-items:center;justify-content:center}
+.gear:active{transform:scale(.96)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:60}
+.overlay.show{display:flex}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:620px;animation:up .22s ease}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sheet-head b{font-size:16px}
+.sheet .gear{width:36px;height:36px;font-size:15px;margin-top:0}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>💰 Desafio Meta 2027</h1>
+    <p class="sub">200 depósitos crescentes · abatimento a partir do centro</p>
+  </div>
+  <button class="gear" id="openCfg" title="Configurações" aria-label="Configurações">⚙️</button>
+</div>
+
+<!-- PAINEL -->
+<div class="card">
+  <div class="panel">
+    <div class="stat wide">
+      <div class="k">Progresso</div>
+      <div class="v" id="pTotal">R$ 0,00</div>
+      <div class="bar"><i id="pBar"></i></div>
+      <div class="pct" id="pPct">0% da meta</div>
+    </div>
+    <div class="stat"><div class="k">Depósitos feitos</div><div class="v" id="pFeitos">0 / 200</div></div>
+    <div class="stat"><div class="k">Falta</div><div class="v" id="pFalta">R$ 0,00</div></div>
+    <div class="stat"><div class="k">Meta</div><div class="v" id="pMeta">R$ 0,00</div></div>
+    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v" id="pCaixa">R$ 0,00</div></div>
+  </div>
+</div>
+
+<!-- COMPROVANTE -->
+<div class="card">
+  <label>Registrar depósito com comprovante</label>
+  <div class="row">
+    <input type="number" id="recVal" inputmode="decimal" step="0.01" placeholder="Valor depositado (R$)">
+    <button class="btn sec" id="pickFile" style="flex:.7">📎 Foto</button>
+  </div>
+  <input type="file" id="recFile" accept="image/*" style="display:none">
+  <div id="fileName" class="muted-note"></div>
+  <button class="btn" id="addRec" style="margin-top:10px">Registrar e abater depósitos</button>
+  <div class="hint">O valor abate os depósitos começando pelos do <b>centro</b> da grade e indo pra fora. O que sobrar fica no <b>Caixa</b> e entra no próximo registro.</div>
+</div>
+
+<!-- GRID -->
+<div class="card">
+  <label>Grade dos 200 depósitos (toque para marcar/desmarcar)</label>
+  <div class="gridwrap"><div class="grid" id="grid"></div></div>
+</div>
+
+<!-- HISTÓRICO -->
+<div class="card">
+  <label>Comprovantes registrados</label>
+  <div id="recs"></div>
+  <div id="noRecs" class="muted-note">Nenhum comprovante ainda.</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- MODAL DE CONFIGURAÇÕES -->
+<div class="overlay" id="cfg">
+  <div class="sheet">
+    <div class="sheet-head">
+      <b>Configurações</b>
+      <button class="gear" id="closeCfg" aria-label="Fechar">✕</button>
+    </div>
+    <label>Sua meta (R$)</label>
+    <div class="row">
+      <input type="number" id="meta" inputmode="decimal" step="0.01" placeholder="Ex: 35587.89">
+      <button class="btn" id="setMeta" style="flex:.6">Aplicar</button>
+    </div>
+    <div class="muted-note">Alterar a meta recalcula os 200 valores. Os depósitos já marcados continuam marcados (pela posição).</div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn sec" id="exportBtn">Exportar backup</button>
+      <button class="btn sec" id="resetBtn" style="color:#e06a6a">Zerar tudo</button>
+    </div>
+    <div class="muted-note">Tudo fica salvo só no seu celular. Exporte um backup de vez em quando.</div>
+  </div>
+</div>
+
+<script>
+const N=200, SUM_IDX=N*(N+1)/2; // 20100
+const money=v=>"R$ "+(v||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+
+// ---------- estado (localStorage) ----------
+const LS="meta2027_state_v1";
+let state=load();
+function load(){
+  try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.done)return s;}catch(e){}
+  return {meta:0, done:new Array(N).fill(false), caixa:0};
+}
+function save(){localStorage.setItem(LS,JSON.stringify(state));}
+
+// valores dos depósitos: proporcional à posição, arredondado, último ajusta a soma
+function values(){
+  const raw=[],meta=state.meta||0;
+  let acc=0;
+  for(let i=1;i<=N;i++){const v=Math.round(meta*i/SUM_IDX*100)/100;raw.push(v);acc+=v;}
+  raw[N-1]=Math.round((raw[N-1]+(meta-acc))*100)/100; // fecha a soma exata
+  return raw;
+}
+
+// ---------- IndexedDB p/ imagens ----------
+let db;
+function idb(){return new Promise(res=>{
+  const r=indexedDB.open("meta2027",1);
+  r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("recs"))d.createObjectStore("recs",{keyPath:"id"});};
+  r.onsuccess=e=>{db=e.target.result;res();};
+  r.onerror=()=>res();
+});}
+function putRec(rec){return new Promise(res=>{if(!db)return res();const t=db.transaction("recs","readwrite");t.objectStore("recs").put(rec);t.oncomplete=res;t.onerror=res;});}
+function delRec(id){return new Promise(res=>{if(!db)return res();const t=db.transaction("recs","readwrite");t.objectStore("recs").delete(id);t.oncomplete=res;t.onerror=res;});}
+function allRecs(){return new Promise(res=>{if(!db)return res([]);const t=db.transaction("recs","readonly");const rq=t.objectStore("recs").getAll();rq.onsuccess=()=>res(rq.result||[]);rq.onerror=()=>res([]);});}
+
+// ---------- alocação a partir do centro ----------
+function allocate(value){
+  const vals=values();
+  let caixa=state.caixa+value;
+  const center=(N-1)/2;
+  const avail=[];
+  for(let i=0;i<N;i++) if(!state.done[i]) avail.push({i,v:vals[i]});
+  avail.sort((a,b)=>Math.abs(a.i-center)-Math.abs(b.i-center) || a.i-b.i);
+  const consumed=[];
+  for(const d of avail){
+    if(d.v<=caixa+1e-9){caixa=Math.round((caixa-d.v)*100)/100;consumed.push(d.i);}
+  }
+  state.caixa=Math.round(caixa*100)/100;
+  consumed.forEach(i=>state.done[i]=true);
+  return consumed;
+}
+
+// ---------- render ----------
+function render(){
+  const vals=values();
+  let feitos=0,total=0;
+  const center=Math.round((N-1)/2);
+  const g=$("grid");g.innerHTML="";
+  for(let i=0;i<N;i++){
+    if(state.done[i]){feitos++;total+=vals[i];}
+    const el=document.createElement("div");
+    el.className="dep"+(state.done[i]?" done":"")+(i===center||i===center-1?" center":"");
+    el.innerHTML=`<div class="n">#${i+1}</div><div class="val">${vals[i].toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
+    el.onclick=()=>{state.done[i]=!state.done[i];save();render();};
+    g.appendChild(el);
+  }
+  total=Math.round(total*100)/100;
+  const meta=state.meta||0, falta=Math.max(0,Math.round((meta-total)*100)/100);
+  const pct=meta?Math.min(100,total/meta*100):0;
+  $("pTotal").textContent=money(total);
+  $("pBar").style.width=pct+"%";
+  $("pPct").textContent=pct.toFixed(1).replace(".",",")+"% da meta";
+  $("pFeitos").textContent=feitos+" / "+N;
+  $("pFalta").textContent=money(falta);
+  $("pMeta").textContent=money(meta);
+  $("pCaixa").textContent=money(state.caixa);
+  $("meta").value=meta||"";
+}
+
+async function renderRecs(){
+  const recs=(await allRecs()).sort((a,b)=>b.id-a.id);
+  const box=$("recs");box.innerHTML="";
+  $("noRecs").style.display=recs.length?"none":"block";
+  for(const r of recs){
+    const div=document.createElement("div");div.className="rec";
+    div.innerHTML=`<img src="${r.img||''}" alt="">
+      <div class="info"><b>${money(r.value)}</b>
+      <small>${new Date(r.id).toLocaleDateString("pt-BR")} · abateu ${r.count} depósito(s)</small></div>
+      <button class="del" title="Excluir">✕</button>`;
+    div.querySelector(".del").onclick=async()=>{
+      if(!confirm("Excluir este comprovante? Os depósitos que ele marcou serão desmarcados."))return;
+      (r.deposits||[]).forEach(i=>state.done[i]=false);
+      await delRec(r.id);save();render();renderRecs();toast("Comprovante excluído");
+    };
+    box.appendChild(div);
+  }
+}
+
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2600);}
+
+// comprimir imagem p/ miniatura (economiza espaço)
+function readImg(file){return new Promise(res=>{
+  if(!file)return res("");
+  const fr=new FileReader();
+  fr.onload=()=>{const im=new Image();im.onload=()=>{
+    const max=400,sc=Math.min(1,max/Math.max(im.width,im.height));
+    const c=document.createElement("canvas");c.width=im.width*sc;c.height=im.height*sc;
+    c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+    res(c.toDataURL("image/jpeg",.6));
+  };im.onerror=()=>res("");im.src=fr.result;};
+  fr.onerror=()=>res("");fr.readAsDataURL(file);
+});}
+
+// ---------- eventos ----------
+let pickedFile=null;
+const cfg=$("cfg");
+$("openCfg").onclick=()=>cfg.classList.add("show");
+$("closeCfg").onclick=()=>cfg.classList.remove("show");
+cfg.onclick=e=>{if(e.target===cfg)cfg.classList.remove("show");};
+$("setMeta").onclick=()=>{
+  const m=parseFloat($("meta").value);
+  if(!m||m<=0)return toast("Digite uma meta válida");
+  state.meta=Math.round(m*100)/100;save();render();toast("Meta aplicada");
+};
+$("pickFile").onclick=()=>$("recFile").click();
+$("recFile").onchange=e=>{pickedFile=e.target.files[0]||null;$("fileName").textContent=pickedFile?("📎 "+pickedFile.name):"";};
+$("addRec").onclick=async()=>{
+  const v=parseFloat($("recVal").value);
+  if(!v||v<=0)return toast("Digite o valor depositado");
+  const consumed=allocate(v);
+  const img=await readImg(pickedFile);
+  const rec={id:Date.now(),value:Math.round(v*100)/100,count:consumed.length,deposits:consumed,img};
+  await putRec(rec);save();render();renderRecs();
+  pickedFile=null;$("recFile").value="";$("recVal").value="";$("fileName").textContent="";
+  toast(consumed.length?`Abatidos ${consumed.length} depósito(s). Caixa: ${money(state.caixa)}`:`Valor guardado no caixa: ${money(state.caixa)}`);
+};
+$("resetBtn").onclick=async()=>{
+  if(!confirm("Zerar meta, depósitos e comprovantes?"))return;
+  const recs=await allRecs();for(const r of recs)await delRec(r.id);
+  state={meta:state.meta,done:new Array(N).fill(false),caixa:0};save();render();renderRecs();toast("Tudo zerado");
+};
+$("exportBtn").onclick=async()=>{
+  const data={state,recs:await allRecs()};
+  const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="meta2027-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();
+};
+
+// ---------- init ----------
+(async()=>{await idb();render();renderRecs();if(!state.meta)cfg.classList.add("show");})();
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}
+</script>
+</body>
+</html>
