@@ -22,7 +22,8 @@ Abra o `index.html` no navegador do celular. Já funciona. Mas pra virar
 5. Abra esse link no celular → menu do navegador → **"Adicionar à tela inicial"**.
    Pronto: vira ícone, abre em tela cheia e funciona offline.
 
-## Três métodos (selecionáveis na abertura ou na engrenagem)
+## Três métodos em paralelo (abas no topo)
+A mesma meta vale para os três; cada um tem seu próprio progresso e caixa.
 - **Tabela** — 200 depósitos crescentes que somam a meta; comprovante abate a partir do centro da grade.
 - **Primo Rico (ARCA)** — meta dividida em 4 caixinhas (Ações, Fundos imobiliários, Caixa, Internacional, ~25% cada, 10–40%); cada depósito é distribuído entre elas. Inclui a Regra dos 300 (gasto mensal × 300) para calcular a meta.
 - **Sardinha** — aporte constante: define-se o nº de meses e aporta-se o mesmo valor por mês até a meta.
@@ -30,11 +31,11 @@ Abra o `index.html` no navegador do celular. Já funciona. Mas pra virar
 > Adaptações de poupança inspiradas na filosofia pública de cada autor. Não é recomendação de investimento nem produto oficial deles.
 
 ## Como usar
-1. Escolha o método e defina a meta (⚙️).
-2. Para registrar: digite o valor, anexe a foto do comprovante e toque em **Registrar depósito**.
-   O app aloca conforme o método; a sobra fica no **Caixa**.
-3. Dá pra marcar/desmarcar manualmente tocando na grade/meses.
-4. **Exportar backup** salva um `.json` com tudo.
+1. Defina a meta na engrenagem (⚙️) — ela vale para os 3 métodos; dá para configurar ARCA e Sardinha ali também, todos juntos.
+2. Navegue entre os métodos pelas **abas** no topo.
+3. Para registrar: digite o valor, anexe a foto e toque em **Registrar neste método** — o depósito entra no método da aba ativa; a sobra fica no **Caixa** daquele método.
+4. Dá pra marcar/desmarcar manualmente tocando na grade/meses.
+5. **Exportar backup** salva um `.json`; **Zerar tudo** apaga meta, progresso dos 3 métodos e comprovantes.
 
 Dados ficam só no seu celular. Limpar os dados do navegador apaga o progresso —
 use o backup.

@@ -13,8 +13,7 @@
 <style>
 :root{
   --bg:#0b1411; --card:#132621; --card2:#18302a; --line:#244038;
-  --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8;
-  --accent:#ffd166; --blue:#4aa3e0; --purple:#b78df0; --radius:16px;
+  --green:#15b87a; --green-d:#0d6e4a; --txt:#eaf4f0; --mut:#8fb3a8; --accent:#ffd166; --radius:16px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
@@ -28,8 +27,7 @@ input[type=number],input[type=text]{width:100%;background:var(--card2);border:1p
 .btn{background:var(--green);color:#05211a;border:none;border-radius:10px;padding:12px 14px;font-size:15px;font-weight:700;cursor:pointer;width:100%}
 .btn:active{transform:scale(.98)}
 .btn.sec{background:transparent;border:1px solid var(--line);color:var(--txt);font-weight:600}
-.row{display:flex;gap:10px}
-.row>*{flex:1}
+.row{display:flex;gap:10px}.row>*{flex:1}
 .panel{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
 .stat .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
@@ -39,65 +37,64 @@ input[type=number],input[type=text]{width:100%;background:var(--card2);border:1p
 .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--green-d),var(--green));width:0}
 .bar.sm{height:8px;margin-top:6px}
 .pct{font-size:13px;color:var(--mut);margin-top:6px}
-.gridwrap{max-height:46vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+.gridwrap{max-height:44vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:7px}
 .dep{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;position:relative;transition:.12s}
-.dep .n{font-size:10px;color:var(--mut)}
-.dep .val{font-size:13px;font-weight:700;margin-top:2px}
+.dep .n{font-size:10px;color:var(--mut)}.dep .val{font-size:13px;font-weight:700;margin-top:2px}
 .dep.done{background:var(--green-d);border-color:var(--green)}
 .dep.done .n,.dep.done .val{color:#eafff6}
 .dep.done::after{content:"✓";position:absolute;top:3px;right:5px;font-size:11px;color:var(--accent)}
 .dep.center{outline:1px dashed var(--mut);outline-offset:-3px}
-/* baldes arca */
 .bucket{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
 .bucket .bhead{display:flex;justify-content:space-between;align-items:baseline}
-.bucket .bname{font-weight:700;font-size:14px}
-.bucket .bpct{font-size:11px;color:var(--mut)}
+.bucket .bname{font-weight:700;font-size:14px}.bucket .bpct{font-size:11px;color:var(--mut)}
 .bucket .bval{font-size:12px;color:var(--mut);margin-top:6px}
 .rec{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px}
 .rec img{width:46px;height:46px;object-fit:cover;border-radius:8px;background:#000;flex:none}
 .rec .info{flex:1;min-width:0}.rec .info b{font-size:14px}
 .rec .info small{color:var(--mut);display:block;font-size:11px}
 .rec .del{background:none;border:none;color:#e06a6a;font-size:18px;cursor:pointer;flex:none;padding:4px}
+.chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--green-d);color:#eafff6;margin-right:6px}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#05211a;border:1px solid var(--green);color:var(--txt);padding:12px 16px;border-radius:12px;font-size:14px;max-width:90%;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:80;opacity:0;transition:.25s;pointer-events:none}
 .toast.show{opacity:1}
 .hint{font-size:12px;color:var(--mut);line-height:1.5;margin:8px 2px 0}
 .muted-note{font-size:11px;color:var(--mut);margin-top:10px;line-height:1.5}
 a{color:var(--green)}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 2px 4px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 2px 10px}
 .gear{background:var(--card);border:1px solid var(--line);color:var(--txt);width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
 .gear:active{transform:scale(.96)}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--green-d);color:#eafff6;margin-top:8px}
-/* overlay / modais */
+/* abas */
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:14px;position:sticky;top:0;z-index:30}
+.tabs button{flex:1;background:none;border:none;color:var(--mut);padding:10px 4px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;line-height:1.25}
+.tabs button .em{display:block;font-size:17px;margin-bottom:2px}
+.tabs button.on{background:var(--green-d);color:#fff}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:70}
 .overlay.show{display:flex}
 .sheet{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 0 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));width:100%;max-width:640px;max-height:90vh;overflow:auto;animation:up .22s ease}
 @keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .sheet-head b{font-size:16px}.sheet .gear{width:36px;height:36px;font-size:15px}
-/* seletor de método */
-.mopt{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;cursor:pointer;transition:.12s}
-.mopt:active{transform:scale(.99)}
-.mopt.on{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
-.mopt h3{margin:0 0 4px;font-size:15px}
-.mopt p{margin:0;font-size:12px;color:var(--mut);line-height:1.5}
-.disc{font-size:11px;color:var(--mut);line-height:1.5;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:4px}
+.seccard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}
+.seccard h4{margin:0 0 8px;font-size:14px}
+.disc{font-size:11px;color:var(--mut);line-height:1.5;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:14px}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div>
-    <h1>💰 Desafio Meta 2027</h1>
-    <p class="sub" id="subTitle">Escolha um método para começar</p>
-  </div>
+  <div><h1>💰 Desafio Meta 2027</h1><p class="sub" id="subTitle">—</p></div>
   <button class="gear" id="openCfg" title="Configurações">⚙️</button>
+</div>
+
+<div class="tabs" id="tabs">
+  <button data-m="tabela"><span class="em">📊</span>Tabela</button>
+  <button data-m="arca"><span class="em">🧩</span>Primo Rico</button>
+  <button data-m="sardinha"><span class="em">🐟</span>Sardinha</button>
 </div>
 
 <div id="app"></div>
 
-<!-- COMPROVANTE (comum aos modos) -->
-<div class="card" id="recCard" style="display:none">
+<div class="card" id="recCard">
   <label id="recLabel">Registrar depósito com comprovante</label>
   <div class="row">
     <input type="number" id="recVal" inputmode="decimal" step="0.01" placeholder="Valor depositado (R$)">
@@ -105,12 +102,11 @@ a{color:var(--green)}
   </div>
   <input type="file" id="recFile" accept="image/*" style="display:none">
   <div id="fileName" class="muted-note"></div>
-  <button class="btn" id="addRec" style="margin-top:10px">Registrar depósito</button>
+  <button class="btn" id="addRec" style="margin-top:10px">Registrar neste método</button>
   <div class="hint" id="recHint"></div>
 </div>
 
-<!-- HISTÓRICO -->
-<div class="card" id="histCard" style="display:none">
+<div class="card" id="histCard">
   <label>Comprovantes registrados</label>
   <div id="recs"></div>
   <div id="noRecs" class="muted-note">Nenhum comprovante ainda.</div>
@@ -118,59 +114,49 @@ a{color:var(--green)}
 
 <div class="toast" id="toast"></div>
 
-<!-- SELETOR DE MÉTODO -->
-<div class="overlay" id="picker">
-  <div class="sheet">
-    <div class="sheet-head"><b>Escolha seu método</b><button class="gear" id="closePicker" style="display:none">✕</button></div>
-    <div class="mopt" data-m="tabela"><h3>📊 Tabela — 200 depósitos</h3><p>200 depósitos crescentes que somam sua meta. Você marca quais já fez; o comprovante abate a partir do centro da grade.</p></div>
-    <div class="mopt" data-m="arca"><h3>🧩 Primo Rico — método ARCA</h3><p>Diversifica a meta em 4 caixinhas: Ações, Fundos imobiliários, Caixa/renda fixa e Ativos internacionais (~25% cada). Cada depósito é distribuído entre elas.</p></div>
-    <div class="mopt" data-m="sardinha"><h3>🐟 Sardinha — aporte constante</h3><p>Filosofia de longo prazo e disciplina: você aporta o mesmo valor todo mês até a meta. Defina o nº de meses e siga o ritmo.</p></div>
-    <div class="disc">Adaptações de poupança inspiradas na filosofia pública de cada autor. Não é recomendação de investimento nem produto oficial deles.</div>
-  </div>
-</div>
-
-<!-- CONFIGURAÇÕES -->
+<!-- CONFIGURAÇÕES (todos os métodos juntos) -->
 <div class="overlay" id="cfg">
   <div class="sheet">
     <div class="sheet-head"><b>Configurações</b><button class="gear" id="closeCfg">✕</button></div>
 
-    <label>Sua meta (R$)</label>
+    <label>Meta (vale para os 3 métodos)</label>
     <div class="row">
       <input type="number" id="meta" inputmode="decimal" step="0.01" placeholder="Ex: 35587.89">
       <button class="btn" id="setMeta" style="flex:.6">Aplicar</button>
     </div>
-
-    <div style="margin-top:14px">
-      <label>Método atual</label>
-      <button class="btn sec" id="changeMethod">Trocar método</button>
+    <div class="row" style="margin-top:8px">
+      <input type="number" id="gasto" inputmode="decimal" placeholder="Gasto mensal (R$)">
+      <button class="btn sec" id="calc300" style="flex:.6">Regra dos 300</button>
     </div>
+    <div class="muted-note">Regra dos 300 (Primo Rico): gasto mensal × 300 ≈ patrimônio p/ viver de renda — vira sua meta.</div>
 
-    <!-- config ARCA -->
-    <div id="cfgArca" style="display:none;margin-top:16px">
-      <label>Distribuição ARCA (% — soma 100, cada uma de 10% a 40%)</label>
+    <div class="seccard">
+      <h4>🧩 Primo Rico — ARCA</h4>
+      <label>Distribuição (% — soma 100, cada uma de 10% a 40%)</label>
       <div class="row"><input type="number" id="pA" inputmode="numeric"><input type="number" id="pR" inputmode="numeric"><input type="number" id="pC" inputmode="numeric"><input type="number" id="pA2" inputmode="numeric"></div>
-      <div class="muted-note">Ordem: Ações · Fundos imob. · Caixa · Internacional</div>
+      <div class="muted-note">Ações · Fundos imob. · Caixa · Internacional</div>
       <button class="btn sec" id="setArca" style="margin-top:8px">Salvar distribuição</button>
     </div>
 
-    <!-- config Sardinha -->
-    <div id="cfgSard" style="display:none;margin-top:16px">
+    <div class="seccard">
+      <h4>🐟 Sardinha — aporte constante</h4>
       <label>Nº de meses do aporte</label>
       <div class="row"><input type="number" id="sMonths" inputmode="numeric" placeholder="Ex: 12"><button class="btn sec" id="setSard" style="flex:.6">Salvar</button></div>
       <div class="muted-note" id="sardCalc"></div>
     </div>
 
-    <div style="margin-top:16px">
-      <label>Regra dos 300 (calcular meta por renda passiva)</label>
-      <div class="row"><input type="number" id="gasto" inputmode="decimal" placeholder="Gasto mensal (R$)"><button class="btn sec" id="calc300" style="flex:.6">× 300</button></div>
-      <div class="muted-note">Thiago Nigro: gasto mensal × 300 ≈ patrimônio p/ viver de renda. (Vira sua meta.)</div>
+    <div class="seccard">
+      <h4>📊 Tabela — 200 depósitos</h4>
+      <div class="muted-note">Os 200 valores são recalculados automaticamente a partir da meta.</div>
     </div>
 
     <div class="row" style="margin-top:16px">
       <button class="btn sec" id="exportBtn">Exportar backup</button>
       <button class="btn sec" id="resetBtn" style="color:#e06a6a">Zerar tudo</button>
     </div>
-    <div class="muted-note">Tudo fica salvo só no seu celular.</div>
+    <div class="muted-note">Zerar tudo apaga a meta, o progresso dos 3 métodos e os comprovantes. Tudo fica salvo só no seu celular.</div>
+
+    <div class="disc">Adaptações de poupança inspiradas na filosofia pública de cada autor. Não é recomendação de investimento nem produto oficial deles.</div>
   </div>
 </div>
 
@@ -179,19 +165,22 @@ const N=200, SUM_IDX=N*(N+1)/2;
 const money=v=>"R$ "+(v||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
 const $=id=>document.getElementById(id);
 const round=v=>Math.round(v*100)/100;
+const NAMES={tabela:"Tabela — 200 depósitos",arca:"Primo Rico — ARCA",sardinha:"Sardinha — aporte constante"};
 
-const LS="meta2027_state_v2";
+const LS="meta2027_state_v3";
 let state=load();
 function load(){
-  try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.tabela)return s;}catch(e){}
-  return {mode:null, meta:0, caixa:0,
-    tabela:{done:new Array(N).fill(false)},
-    arca:{pcts:[25,25,25,25], saved:[0,0,0,0]},
-    sardinha:{months:12, done:[]}};
+  try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.tabela&&s.active)return s;}catch(e){}
+  // migra da v2 se existir
+  let old=null;try{old=JSON.parse(localStorage.getItem("meta2027_state_v2"));}catch(e){}
+  const base={meta:(old&&old.meta)||0, active:"tabela",
+    tabela:{done:(old&&old.tabela&&old.tabela.done)||new Array(N).fill(false), caixa:0},
+    arca:{pcts:(old&&old.arca&&old.arca.pcts)||[25,25,25,25], saved:(old&&old.arca&&old.arca.saved)||[0,0,0,0], caixa:0},
+    sardinha:{months:(old&&old.sardinha&&old.sardinha.months)||12, done:(old&&old.sardinha&&old.sardinha.done)||[], caixa:0}};
+  return base;
 }
 function save(){localStorage.setItem(LS,JSON.stringify(state));}
 
-// ---------- IndexedDB (imagens dos comprovantes) ----------
 let db;
 function idb(){return new Promise(res=>{const r=indexedDB.open("meta2027",1);
   r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("recs"))d.createObjectStore("recs",{keyPath:"id"});};
@@ -200,149 +189,106 @@ function putRec(x){return new Promise(r=>{if(!db)return r();const t=db.transacti
 function delRecDb(id){return new Promise(r=>{if(!db)return r();const t=db.transaction("recs","readwrite");t.objectStore("recs").delete(id);t.oncomplete=r;t.onerror=r;});}
 function allRecs(){return new Promise(r=>{if(!db)return r([]);const t=db.transaction("recs","readonly");const q=t.objectStore("recs").getAll();q.onsuccess=()=>r(q.result||[]);q.onerror=()=>r([]);});}
 
-// ---------- TABELA ----------
+// TABELA
 function tabelaValues(){const raw=[],meta=state.meta||0;let acc=0;
   for(let i=1;i<=N;i++){const v=round(meta*i/SUM_IDX);raw.push(v);acc+=v;}
   raw[N-1]=round(raw[N-1]+(meta-acc));return raw;}
-function tabelaAllocate(value){
-  const vals=tabelaValues();let caixa=state.caixa+value;const center=(N-1)/2;
+function tabelaAllocate(value){const vals=tabelaValues();let caixa=state.tabela.caixa+value;const center=(N-1)/2;
   const avail=[];for(let i=0;i<N;i++)if(!state.tabela.done[i])avail.push({i,v:vals[i]});
   avail.sort((a,b)=>Math.abs(a.i-center)-Math.abs(b.i-center)||a.i-b.i);
-  const consumed=[];
-  for(const d of avail)if(d.v<=caixa+1e-9){caixa=round(caixa-d.v);consumed.push(d.i);}
-  state.caixa=round(caixa);state.tabela.done.forEach;consumed.forEach(i=>state.tabela.done[i]=true);
-  return {count:consumed.length,desc:consumed.length?`abateu ${consumed.length} depósito(s)`:"foi pro caixa"};
-}
+  const c=[];for(const d of avail)if(d.v<=caixa+1e-9){caixa=round(caixa-d.v);c.push(d.i);}
+  state.tabela.caixa=round(caixa);c.forEach(i=>state.tabela.done[i]=true);
+  return c.length?`abateu ${c.length} depósito(s)`:"foi pro caixa";}
 
-// ---------- ARCA ----------
+// ARCA
 const ARCA_NAMES=["Ações","Fundos imob.","Caixa","Internacional"];
 function arcaTargets(){return state.arca.pcts.map(p=>round((state.meta||0)*p/100));}
-function arcaAllocate(value){
-  const tg=arcaTargets();let caixa=state.caixa+value;let distributed=0;
-  // distribui proporcional ao % entre as caixinhas que ainda não encheram
-  for(let pass=0;pass<4 && caixa>0.009;pass++){
-    const open=[0,1,2,3].filter(i=>state.arca.saved[i]<tg[i]-0.009);
-    if(!open.length)break;
-    const wsum=open.reduce((s,i)=>s+state.arca.pcts[i],0);
-    let moved=0;
-    for(const i of open){
-      const share=round(caixa*state.arca.pcts[i]/wsum);
-      const room=round(tg[i]-state.arca.saved[i]);
-      const add=Math.min(share,room);
-      if(add>0){state.arca.saved[i]=round(state.arca.saved[i]+add);moved=round(moved+add);}
-    }
-    if(moved<=0)break;caixa=round(caixa-moved);distributed=round(distributed+moved);
-  }
-  state.caixa=round(caixa);
-  return {count:0,desc:`distribuiu ${money(distributed)} nas caixinhas`};
-}
+function arcaAllocate(value){const tg=arcaTargets();let caixa=state.arca.caixa+value;let dist=0;
+  for(let pass=0;pass<4&&caixa>0.009;pass++){
+    const open=[0,1,2,3].filter(i=>state.arca.saved[i]<tg[i]-0.009);if(!open.length)break;
+    const wsum=open.reduce((s,i)=>s+state.arca.pcts[i],0);let moved=0;
+    for(const i of open){const share=round(caixa*state.arca.pcts[i]/wsum);const room=round(tg[i]-state.arca.saved[i]);
+      const add=Math.min(share,room);if(add>0){state.arca.saved[i]=round(state.arca.saved[i]+add);moved=round(moved+add);}}
+    if(moved<=0)break;caixa=round(caixa-moved);dist=round(dist+moved);}
+  state.arca.caixa=round(caixa);return `distribuiu ${money(dist)} nas caixinhas`;}
 
-// ---------- SARDINHA ----------
+// SARDINHA
 function sardMonthly(){const m=state.sardinha.months||1;return round((state.meta||0)/m);}
-function sardAllocate(value){
-  const mv=sardMonthly();let caixa=state.caixa+value;const n=state.sardinha.months;
+function sardAllocate(value){const mv=sardMonthly();let caixa=state.sardinha.caixa+value;const n=state.sardinha.months;
   if(state.sardinha.done.length!==n)state.sardinha.done=new Array(n).fill(false);
-  let c=0;
-  for(let i=0;i<n;i++)if(!state.sardinha.done[i] && mv<=caixa+1e-9){state.sardinha.done[i]=true;caixa=round(caixa-mv);c++;}
-  state.caixa=round(caixa);
-  return {count:c,desc:c?`cobriu ${c} mês(es) de aporte`:"foi pro caixa"};
-}
+  let c=0;for(let i=0;i<n;i++)if(!state.sardinha.done[i]&&mv<=caixa+1e-9){state.sardinha.done[i]=true;caixa=round(caixa-mv);c++;}
+  state.sardinha.caixa=round(caixa);return c?`cobriu ${c} mês(es)`:"foi pro caixa";}
 
-function allocate(v){
-  if(state.mode==="tabela")return tabelaAllocate(v);
-  if(state.mode==="arca")return arcaAllocate(v);
-  if(state.mode==="sardinha")return sardAllocate(v);
-  return {count:0,desc:""};
-}
-
-// ---------- totais ----------
-function totals(){
+function allocate(m,v){return m==="tabela"?tabelaAllocate(v):m==="arca"?arcaAllocate(v):sardAllocate(v);}
+function caixaDe(m){return state[m].caixa;}
+function totals(m){
   let total=0;
-  if(state.mode==="tabela"){const v=tabelaValues();state.tabela.done.forEach((d,i)=>{if(d)total+=v[i];});}
-  else if(state.mode==="arca"){total=state.arca.saved.reduce((s,x)=>s+x,0);}
-  else if(state.mode==="sardinha"){const mv=sardMonthly();total=state.sardinha.done.filter(Boolean).length*mv;}
+  if(m==="tabela"){const v=tabelaValues();state.tabela.done.forEach((d,i)=>{if(d)total+=v[i];});}
+  else if(m==="arca")total=state.arca.saved.reduce((s,x)=>s+x,0);
+  else{const mv=sardMonthly();total=state.sardinha.done.filter(Boolean).length*mv;}
   total=round(total);const meta=state.meta||0;
-  return {total,meta,falta:Math.max(0,round(meta-total)),pct:meta?Math.min(100,total/meta*100):0};
-}
+  return {total,meta,falta:Math.max(0,round(meta-total)),pct:meta?Math.min(100,total/meta*100):0};}
 
-// ---------- render ----------
 function render(){
-  const has=!!state.mode;
-  $("recCard").style.display=has?"block":"none";
-  $("histCard").style.display=has?"block":"none";
-  const names={tabela:"Tabela — 200 depósitos",arca:"Primo Rico — ARCA",sardinha:"Sardinha — aporte constante"};
-  $("subTitle").textContent=has?names[state.mode]:"Escolha um método para começar";
-  const app=$("app");app.innerHTML="";
-  if(!has)return;
-  const t=totals();
+  const m=state.active;
+  $("subTitle").textContent=NAMES[m];
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));
+  const t=totals(m),app=$("app");app.innerHTML="";
 
-  // painel KPI comum
   const panel=document.createElement("div");panel.className="card";
   let extra="";
-  if(state.mode==="sardinha")extra=`<div class="stat"><div class="k">Aporte / mês</div><div class="v">${money(sardMonthly())}</div></div>
+  if(m==="sardinha")extra=`<div class="stat"><div class="k">Aporte / mês</div><div class="v">${money(sardMonthly())}</div></div>
     <div class="stat"><div class="k">Meses feitos</div><div class="v">${state.sardinha.done.filter(Boolean).length} / ${state.sardinha.months}</div></div>`;
-  else if(state.mode==="tabela")extra=`<div class="stat"><div class="k">Depósitos feitos</div><div class="v">${state.tabela.done.filter(Boolean).length} / ${N}</div></div>
-    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(state.caixa)}</div></div>`;
+  else if(m==="tabela")extra=`<div class="stat"><div class="k">Depósitos feitos</div><div class="v">${state.tabela.done.filter(Boolean).length} / ${N}</div></div>
+    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(caixaDe(m))}</div></div>`;
   else extra=`<div class="stat"><div class="k">Caixinhas</div><div class="v">4 (ARCA)</div></div>
-    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(state.caixa)}</div></div>`;
+    <div class="stat"><div class="k">Caixa (sobra)</div><div class="v">${money(caixaDe(m))}</div></div>`;
   panel.innerHTML=`<div class="panel">
-    <div class="stat wide"><div class="k">Progresso</div><div class="v">${money(t.total)}</div>
+    <div class="stat wide"><div class="k">Progresso · ${NAMES[m]}</div><div class="v">${money(t.total)}</div>
       <div class="bar"><i style="width:${t.pct}%"></i></div>
       <div class="pct">${t.pct.toFixed(1).replace(".",",")}% da meta · falta ${money(t.falta)}</div></div>
     <div class="stat"><div class="k">Meta</div><div class="v">${money(t.meta)}</div></div>
-    <div class="stat"><div class="k">Modo</div><div class="v" style="font-size:14px">${names[state.mode]}</div></div>
+    <div class="stat"><div class="k">Modo</div><div class="v" style="font-size:13px">${m==="tabela"?"Tabela":m==="arca"?"Primo Rico":"Sardinha"}</div></div>
     ${extra}</div>`;
   app.appendChild(panel);
 
-  // corpo por modo
   const body=document.createElement("div");body.className="card";
-  if(state.mode==="tabela"){
-    const v=tabelaValues();const center=Math.round((N-1)/2);
+  if(m==="tabela"){const v=tabelaValues();const center=Math.round((N-1)/2);
     body.innerHTML=`<label>Grade dos 200 depósitos (toque para marcar/desmarcar)</label><div class="gridwrap"><div class="grid" id="grid"></div></div>`;
-    app.appendChild(body);
-    const g=$("grid");
+    app.appendChild(body);const g=$("grid");
     for(let i=0;i<N;i++){const el=document.createElement("div");
       el.className="dep"+(state.tabela.done[i]?" done":"")+(i===center||i===center-1?" center":"");
       el.innerHTML=`<div class="n">#${i+1}</div><div class="val">${v[i].toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
       el.onclick=()=>{state.tabela.done[i]=!state.tabela.done[i];save();render();};g.appendChild(el);}
-  } else if(state.mode==="arca"){
-    const tg=arcaTargets();
-    body.innerHTML=`<label>Caixinhas do método ARCA</label><div id="buckets"></div>`;
-    app.appendChild(body);
-    const bx=$("buckets");
-    for(let i=0;i<4;i++){const saved=state.arca.saved[i],target=tg[i],pct=target?Math.min(100,saved/target*100):0;
+  } else if(m==="arca"){const tg=arcaTargets();
+    body.innerHTML=`<label>Caixinhas do método ARCA</label><div id="buckets"></div>`;app.appendChild(body);const bx=$("buckets");
+    for(let i=0;i<4;i++){const sv=state.arca.saved[i],target=tg[i],pct=target?Math.min(100,sv/target*100):0;
       const d=document.createElement("div");d.className="bucket";
       d.innerHTML=`<div class="bhead"><span class="bname">${ARCA_NAMES[i]}</span><span class="bpct">${state.arca.pcts[i]}% · alvo ${money(target)}</span></div>
-        <div class="bar sm"><i style="width:${pct}%"></i></div>
-        <div class="bval">${money(saved)} (${pct.toFixed(0)}%)</div>`;
-      bx.appendChild(d);}
-  } else if(state.mode==="sardinha"){
-    const n=state.sardinha.months,mv=sardMonthly();
+        <div class="bar sm"><i style="width:${pct}%"></i></div><div class="bval">${money(sv)} (${pct.toFixed(0)}%)</div>`;bx.appendChild(d);}
+  } else {const n=state.sardinha.months,mv=sardMonthly();
     if(state.sardinha.done.length!==n)state.sardinha.done=new Array(n).fill(false);
     body.innerHTML=`<label>Aportes mensais (toque para marcar/desmarcar)</label><div class="gridwrap"><div class="grid" id="grid"></div></div>`;
-    app.appendChild(body);
-    const g=$("grid");
+    app.appendChild(body);const g=$("grid");
     for(let i=0;i<n;i++){const el=document.createElement("div");el.className="dep"+(state.sardinha.done[i]?" done":"");
       el.innerHTML=`<div class="n">Mês ${i+1}</div><div class="val">${mv.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}</div>`;
-      el.onclick=()=>{state.sardinha.done[i]=!state.sardinha.done[i];save();render();};g.appendChild(el);}
-  }
+      el.onclick=()=>{state.sardinha.done[i]=!state.sardinha.done[i];save();render();};g.appendChild(el);}}
 
-  // textos do card de comprovante
   const hints={tabela:"Abate os depósitos a partir do centro da grade; a sobra fica no Caixa.",
     arca:"O valor é distribuído entre as 4 caixinhas conforme a % de cada uma.",
-    sardinha:`Cada mês custa ${money(sardMonthly())}; o valor cobre quantos meses der e a sobra fica no Caixa.`};
-  $("recHint").textContent=hints[state.mode]||"";
-  $("meta").value=state.meta||"";
+    sardinha:`Cada mês custa ${money(sardMonthly())}; cobre quantos meses der e a sobra fica no Caixa.`};
+  $("recHint").textContent=hints[m];
+  $("recLabel").textContent=`Registrar depósito — ${NAMES[m]}`;
 }
 
 async function renderRecs(){
   const recs=(await allRecs()).sort((a,b)=>b.id-a.id);const box=$("recs");box.innerHTML="";
   $("noRecs").style.display=recs.length?"none":"block";
   for(const r of recs){const div=document.createElement("div");div.className="rec";
+    const mn=r.method==="tabela"?"Tabela":r.method==="arca"?"Primo Rico":r.method==="sardinha"?"Sardinha":"";
     div.innerHTML=`<img src="${r.img||''}" alt=""><div class="info"><b>${money(r.value)}</b>
-      <small>${new Date(r.id).toLocaleDateString("pt-BR")} · ${r.desc||''}</small></div><button class="del">✕</button>`;
-    div.querySelector(".del").onclick=async()=>{
-      if(!confirm("Excluir este comprovante? (não desfaz a alocação automaticamente)"))return;
+      <small>${mn?`<span class="chip">${mn}</span>`:''}${new Date(r.id).toLocaleDateString("pt-BR")} · ${r.desc||''}</small></div><button class="del">✕</button>`;
+    div.querySelector(".del").onclick=async()=>{if(!confirm("Excluir este comprovante? (não desfaz a alocação)"))return;
       await delRecDb(r.id);renderRecs();toast("Comprovante excluído");};
     box.appendChild(div);}
 }
@@ -354,69 +300,45 @@ function readImg(file){return new Promise(res=>{if(!file)return res("");const fr
     c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.6));};
     im.onerror=()=>res("");im.src=fr.result;};fr.onerror=()=>res("");fr.readAsDataURL(file);});}
 
-// ---------- eventos ----------
-let pickedFile=null;
-const cfg=$("cfg"),picker=$("picker");
+let pickedFile=null;const cfg=$("cfg");
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{state.active=b.dataset.m;save();render();});
 $("openCfg").onclick=()=>{syncCfg();cfg.classList.add("show");};
 $("closeCfg").onclick=()=>cfg.classList.remove("show");
 cfg.onclick=e=>{if(e.target===cfg)cfg.classList.remove("show");};
-$("closePicker").onclick=()=>picker.classList.remove("show");
-picker.onclick=e=>{if(e.target===picker&&state.mode)picker.classList.remove("show");};
-$("changeMethod").onclick=()=>{cfg.classList.remove("show");openPicker();};
 
-function openPicker(){
-  document.querySelectorAll(".mopt").forEach(o=>o.classList.toggle("on",o.dataset.m===state.mode));
-  $("closePicker").style.display=state.mode?"flex":"none";
-  picker.classList.add("show");
-}
-document.querySelectorAll(".mopt").forEach(o=>o.onclick=()=>{
-  state.mode=o.dataset.m;
-  if(state.mode==="sardinha"&&state.sardinha.done.length!==state.sardinha.months)state.sardinha.done=new Array(state.sardinha.months).fill(false);
-  save();render();renderRecs();picker.classList.remove("show");
-  if(!state.meta){syncCfg();cfg.classList.add("show");toast("Agora defina sua meta");}
-});
+function syncCfg(){$("meta").value=state.meta||"";
+  const p=state.arca.pcts;$("pA").value=p[0];$("pR").value=p[1];$("pC").value=p[2];$("pA2").value=p[3];
+  $("sMonths").value=state.sardinha.months;$("sardCalc").textContent=state.meta?`Aporte mensal ≈ ${money(sardMonthly())}`:"";}
 
-function syncCfg(){
-  $("meta").value=state.meta||"";
-  $("cfgArca").style.display=state.mode==="arca"?"block":"none";
-  $("cfgSard").style.display=state.mode==="sardinha"?"block":"none";
-  if(state.mode==="arca"){const p=state.arca.pcts;$("pA").value=p[0];$("pR").value=p[1];$("pC").value=p[2];$("pA2").value=p[3];}
-  if(state.mode==="sardinha"){$("sMonths").value=state.sardinha.months;$("sardCalc").textContent=state.meta?`Aporte mensal ≈ ${money(sardMonthly())}`:"";}
-}
-
-$("setMeta").onclick=()=>{const m=parseFloat($("meta").value);if(!m||m<=0)return toast("Digite uma meta válida");
-  state.meta=round(m);save();render();syncCfg();toast("Meta aplicada");};
+$("setMeta").onclick=()=>{const v=parseFloat($("meta").value);if(!v||v<=0)return toast("Digite uma meta válida");
+  state.meta=round(v);save();render();syncCfg();toast("Meta aplicada aos 3 métodos");};
+$("calc300").onclick=()=>{const g=parseFloat($("gasto").value);if(!g||g<=0)return toast("Digite o gasto mensal");
+  state.meta=round(g*300);save();render();syncCfg();toast("Meta definida pela Regra dos 300");};
 $("setArca").onclick=()=>{const p=[+$("pA").value,+$("pR").value,+$("pC").value,+$("pA2").value];
   if(p.some(x=>isNaN(x))||Math.round(p.reduce((s,x)=>s+x,0))!==100)return toast("As 4 % precisam somar 100");
   if(p.some(x=>x<10||x>40))return toast("Cada classe deve ficar entre 10% e 40%");
-  state.arca.pcts=p;save();render();toast("Distribuição salva");};
+  state.arca.pcts=p;save();render();toast("Distribuição ARCA salva");};
 $("setSard").onclick=()=>{const n=parseInt($("sMonths").value);if(!n||n<1||n>600)return toast("Nº de meses inválido");
-  state.sardinha.months=n;state.sardinha.done=new Array(n).fill(false);save();render();syncCfg();toast("Plano atualizado");};
-$("calc300").onclick=()=>{const g=parseFloat($("gasto").value);if(!g||g<=0)return toast("Digite o gasto mensal");
-  state.meta=round(g*300);save();render();syncCfg();toast("Meta definida pela Regra dos 300");};
+  state.sardinha.months=n;state.sardinha.done=new Array(n).fill(false);save();render();syncCfg();toast("Plano Sardinha atualizado");};
 
 $("pickFile").onclick=()=>$("recFile").click();
 $("recFile").onchange=e=>{pickedFile=e.target.files[0]||null;$("fileName").textContent=pickedFile?("📎 "+pickedFile.name):"";};
-$("addRec").onclick=async()=>{
-  if(!state.meta)return toast("Defina sua meta primeiro (⚙️)");
+$("addRec").onclick=async()=>{if(!state.meta)return toast("Defina sua meta primeiro (⚙️)");
   const v=parseFloat($("recVal").value);if(!v||v<=0)return toast("Digite o valor depositado");
-  const r=allocate(round(v));const img=await readImg(pickedFile);
-  await putRec({id:Date.now(),value:round(v),desc:r.desc,img});
-  save();render();renderRecs();
-  pickedFile=null;$("recFile").value="";$("recVal").value="";$("fileName").textContent="";
-  toast(`Registrado · ${r.desc} · Caixa: ${money(state.caixa)}`);
-};
-$("resetBtn").onclick=async()=>{if(!confirm("Zerar meta, progresso e comprovantes?"))return;
+  const m=state.active,desc=allocate(m,round(v));const img=await readImg(pickedFile);
+  await putRec({id:Date.now(),value:round(v),method:m,desc,img});
+  save();render();renderRecs();pickedFile=null;$("recFile").value="";$("recVal").value="";$("fileName").textContent="";
+  toast(`${NAMES[m]} · ${desc} · Caixa: ${money(caixaDe(m))}`);};
+$("resetBtn").onclick=async()=>{if(!confirm("Zerar a META, o progresso dos 3 métodos e todos os comprovantes?"))return;
   const recs=await allRecs();for(const r of recs)await delRecDb(r.id);
-  state={mode:null,meta:0,caixa:0,tabela:{done:new Array(N).fill(false)},arca:{pcts:[25,25,25,25],saved:[0,0,0,0]},sardinha:{months:12,done:[]}};
-  save();cfg.classList.remove("show");render();renderRecs();openPicker();toast("Tudo zerado");};
+  state={meta:0,active:"tabela",tabela:{done:new Array(N).fill(false),caixa:0},arca:{pcts:[25,25,25,25],saved:[0,0,0,0],caixa:0},sardinha:{months:12,done:[],caixa:0}};
+  save();render();renderRecs();syncCfg();toast("Tudo zerado");};
 $("exportBtn").onclick=async()=>{const data={state,recs:await allRecs()};
   const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
   a.download="meta2027-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();};
 
-// ---------- init ----------
-(async()=>{await idb();render();renderRecs();if(!state.mode)openPicker();})();
+(async()=>{await idb();render();renderRecs();if(!state.meta){syncCfg();cfg.classList.add("show");}})();
 if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}
 </script>
 </body>
